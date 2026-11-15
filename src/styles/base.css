@@ -1,0 +1,29 @@
+:root {
+  --bg: #05080d;
+  --panel: #0b1620;
+  --line: #1d3a4d;
+  --text: #cfe8e4;
+  --dim: #6f8f95;
+  --accent: #4ff2c8;
+  --bad: #ff5c7a;
+  --code: #9be8ff;
+  --font-pixel: 'Press Start 2P', ui-monospace, Menlo, monospace;
+  --font-code: ui-monospace, Menlo, Consolas, monospace;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 11px/1.8 var(--font-pixel);
+}
+main { max-width: 760px; margin: 0 auto; padding: 14px; }
+h1 { font-size: 16px; color: var(--accent); margin: 6px 0 2px; text-shadow: 3px 3px 0 #000; }
+.sub { color: var(--dim); font-size: 9px; margin: 0 0 14px; }
+.hide { display: none !important; }
+.dim { color: var(--dim); }
+.big { font-size: 14px; color: var(--accent); }
+.grid { display: grid; gap: 10px; }

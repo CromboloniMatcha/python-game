@@ -1,0 +1,45 @@
+export default [
+  {
+    id: 'i1',
+    title: 'Names, aliasing and mutability',
+    blocks: [
+      { type: 'p', text: 'Assignment attaches a name to an object. It never copies the object. This one rule explains a lot of surprising bugs.' },
+      { type: 'names', rows: [{ names: ['a', 'b'], value: '[1, 2]' }], caption: 'b = a  gives one list with two names' },
+      { type: 'code', code: 'a = [1, 2]\nb = a\nb.append(3)\nprint(a)', output: '[1, 2, 3]' },
+      { type: 'h', text: 'Mutable vs immutable' },
+      { type: 'list', items: ['Mutable (can change in place): `list`, `dict`, `set`', 'Immutable: `int`, `float`, `str`, `tuple`'] },
+      { type: 'p', text: 'Assignment works the same way for both. The surprise only appears when two names share an object that can change.' },
+      { type: 'predict', code: 'a = [1, 2]\nb = a.copy()\nb.append(3)\nprint(a)', options: ['[1, 2]', '[1, 2, 3]', '[3]', 'Error'], answer: 0, output: '[1, 2]', explain: '`copy()` makes a new list, so `b` is a different object from `a`.' },
+      { type: 'mistake', title: 'a mutable default argument', wrong: 'def add(x, items=[]):\n    items.append(x)\n    return items', right: 'def add(x, items=None):\n    if items is None:\n        items = []\n    items.append(x)\n    return items', why: 'A default value is created once, when the function is defined, so every call shares the same list.' },
+      { type: 'parsons', goal: 'Keep a backup that does not change.', lines: ['original = [1, 2, 3]', 'backup = original.copy()', 'original.append(4)', 'print(backup)'], output: '[1, 2, 3]', explain: 'The backup is a separate list, so changing `original` does not touch it.' },
+      { type: 'h', text: 'Modify it' },
+      {"type": "try", "goal": "Run it, then change b = a to b = a.copy() and run again. Compare the two outputs.", "starter": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)\nprint(b)"},
+      { type: 'h', text: 'Make it' },
+      {"type": "challenge", "id": "i1-c", "goal": "Write add_item(x, items=None) that appends x to items and returns it. Without items it must start a fresh list every call.", "starter": "def add_item(x, items=None):\n    # your code here\n    pass\n", "hint": "Use None as the default, and create the list inside the function.", "solution": "def add_item(x, items=None):\n    if items is None:\n        items = []\n    items.append(x)\n    return items", "tests": [{"test": "print(add_item(1))", "expect": "[1]"}, {"test": "add_item(1)\nprint(add_item(2))", "expect": "[2]"}, {"test": "a = [9]\nadd_item(1, a)\nprint(a)", "expect": "[9, 1]"}]},
+    ],
+    quiz: [
+      { code: `a = [1]\nb = a\nb.append(2)\nprint(a)`, answer: '[1, 2]', wrong: ['[1]', '[2]', 'Error'], explain: 'a and b are two names for the same list.' },
+      { code: `x = "hi"\ny = x\ny += "!"\nprint(x)`, answer: 'hi', wrong: ['hi!', '!', 'Error'], explain: 'Strings are immutable, so += makes a new string for y.' },
+      { code: `a = [1, 2]\nb = [1, 2]\nprint(a == b, a is b)`, answer: 'True False', wrong: ['True True', 'False False', 'False True'], explain: '== compares values, `is` checks if it is the same object.' },
+    ],
+  },
+  {
+    id: 'i2',
+    title: 'Exceptions',
+    blocks: [
+      { type: 'p', text: 'When something goes wrong Python raises an exception. `try` and `except` let your program handle it instead of crashing.' },
+      { type: 'code', code: 'try:\n    n = int("abc")\nexcept ValueError:\n    print("Not a number")', output: 'Not a number' },
+      { type: 'list', items: ['`try` - code that might fail', '`except` - runs if that error happens', '`else` - runs if nothing failed', '`finally` - always runs'] },
+      { type: 'predict', code: 'try:\n    print(1 / 0)\nexcept ZeroDivisionError:\n    print("oops")\nfinally:\n    print("done")', options: ['oops', 'oops\ndone', 'done', 'ZeroDivisionError'], answer: 1, output: 'oops\ndone', explain: 'The `except` block handles the error, and then `finally` always runs.' },
+      { type: 'mistake', title: 'a bare except', wrong: 'try:\n    risky()\nexcept:\n    pass', right: 'try:\n    risky()\nexcept ValueError as e:\n    print(e)', why: 'A bare `except` hides every error, including real bugs. Catch the specific error you expect.' },
+      { type: 'parsons', goal: 'Turn text into a number, or give 0 if it fails.', lines: ['def to_int(s):', '    try:', '        return int(s)', '    except ValueError:', '        return 0', 'print(to_int("x"))'], output: '0', explain: 'The risky line sits inside `try`, and `except` supplies the fallback.' },
+      { type: 'h', text: 'Make it' },
+      {"type": "challenge", "id": "i2-c", "goal": "Write safe_div(a, b) that returns a / b, or the text \"undefined\" if b is zero (use try/except).", "starter": "def safe_div(a, b):\n    # your code here\n    pass\n", "hint": "Catch ZeroDivisionError and return \"undefined\".", "solution": "def safe_div(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return \"undefined\"", "tests": [{"test": "print(safe_div(6, 3))", "expect": "2.0"}, {"test": "print(safe_div(1, 0))", "expect": "undefined"}]},
+    ],
+    quiz: [
+      { code: `try:\n    int("5")\nexcept ValueError:\n    print("bad")\nelse:\n    print("ok")`, answer: 'ok', wrong: ['bad', 'ok\nbad', 'Nothing is printed'], explain: '`else` runs when no exception happened.' },
+      { code: `try:\n    [1][5]\nexcept IndexError:\n    print("idx")`, answer: 'idx', wrong: ['[1]', '5', 'Error'], explain: 'Index 5 does not exist, so IndexError is raised and caught.' },
+      { code: `print(isinstance(ValueError("x"), Exception))`, answer: 'True', wrong: ['False', 'None', 'Error'], explain: 'ValueError is a subclass of Exception.' },
+    ],
+  },
+];

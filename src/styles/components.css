@@ -1,0 +1,33 @@
+button {
+  font: inherit; color: var(--text); background: var(--panel);
+  border: 3px solid var(--line); border-radius: 0; padding: 10px 12px;
+  cursor: pointer; text-align: left; box-shadow: 4px 4px 0 #000;
+}
+button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+button:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+button:disabled { opacity: .4; cursor: not-allowed; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.tab.on { background: var(--accent); color: #02110d; border-color: var(--accent); }
+.go { margin-top: 10px; background: var(--accent); color: #02110d; border-color: var(--accent); }
+
+.box { background: var(--panel); border: 3px solid var(--line); padding: 14px; box-shadow: 4px 4px 0 #000; margin-bottom: 14px; }
+
+pre.code {
+  margin: 0 0 12px; padding: 12px; background: #000; border: 3px solid var(--line);
+  color: var(--code); font: 12px/1.7 var(--font-code); overflow-x: auto;
+}
+.options { display: grid; gap: 10px; }
+.options button { font-family: var(--font-code); font-size: 13px; white-space: pre-wrap; }
+.options .ok { border-color: var(--accent); background: #0b2a26; color: var(--accent); }
+.options .no { border-color: var(--bad); background: #2a0b14; color: var(--bad); }
+.feedback { margin-top: 12px; font-size: 10px; }
+.good { color: var(--accent); }
+.bad { color: var(--bad); }
+
+.hud { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 10px; margin-bottom: 10px; }
+#learn-head { margin-bottom: 10px; }
+canvas#ocean {
+  width: 100%; display: block; aspect-ratio: 160 / 72; background: #000;
+  image-rendering: pixelated; border: 3px solid var(--line); box-shadow: 4px 4px 0 #000; margin-bottom: 14px;
+}

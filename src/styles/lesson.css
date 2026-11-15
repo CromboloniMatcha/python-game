@@ -1,0 +1,80 @@
+.lesson h2 { font-size: 13px; color: var(--accent); margin: 0 0 12px; }
+.lesson h3 { font-size: 11px; color: #ffd34f; margin: 18px 0 6px; }
+.lesson p, .lesson li { font-size: 10px; line-height: 2; margin: 6px 0; }
+.lesson ul { padding-left: 18px; margin: 6px 0; }
+.lesson code {
+  font-family: var(--font-code); font-size: 12px; color: var(--code);
+  background: #000; border: 2px solid var(--line); padding: 0 4px;
+}
+.lesson pre.out {
+  margin: -12px 0 12px; padding: 8px 12px; background: #02110d;
+  border: 3px solid #0f3b33; border-top: 0; color: var(--accent); font: 12px/1.6 var(--font-code);
+}
+.lesson pre.out::before { content: 'OUTPUT'; display: block; font: 8px var(--font-pixel); color: var(--dim); margin-bottom: 4px; }
+.lesson .feedback pre.out { margin: 8px 0; border-top: 3px solid #0f3b33; }
+
+.note { padding: 10px 12px; margin: 12px 0; font-size: 10px; line-height: 2; border: 3px solid; }
+.note b { display: block; font-size: 8px; margin-bottom: 4px; }
+.note.tip { border-color: #2a7a6a; background: #0a1f1b; }
+.note.tip b { color: var(--accent); }
+.note.warn { border-color: #8a5a1f; background: #1f160a; }
+.note.warn b { color: #ffb347; }
+.note.mis { border-color: #8a2f43; background: #1f0a10; }
+.note.mis b { color: var(--bad); }
+.two { display: grid; gap: 8px; margin: 8px 0; }
+@media (min-width: 560px) { .two { grid-template-columns: 1fr 1fr; } }
+.two small { font-size: 8px; }
+.two pre.code { margin: 4px 0 0; }
+pre.code.wr { border-color: #8a2f43; }
+pre.code.rt { border-color: #2a7a6a; }
+
+.fig { margin: 14px 0; text-align: center; }
+.fig figcaption { font-size: 8px; color: var(--dim); margin-top: 8px; }
+.fig img { max-width: 100%; image-rendering: pixelated; border: 3px solid var(--line); }
+.varbox { display: inline-flex; border: 3px solid var(--line); box-shadow: 4px 4px 0 #000; }
+.varbox .vn { padding: 8px 12px; background: #102534; color: #ffd34f; font-size: 11px; }
+.varbox .vv { padding: 8px 16px; color: var(--accent); font: 14px var(--font-code); }
+.cells { display: inline-flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cell span { border: 3px solid var(--accent); padding: 8px 12px; min-width: 44px; font: 13px var(--font-code); }
+.cell small { font-size: 8px; color: var(--dim); }
+.stack { display: grid; gap: 10px; margin-top: 14px; }
+
+.nrow { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 8px 0; }
+.tag { display: inline-block; margin: 2px; padding: 4px 10px; background: #102534; color: #ffd34f; border: 3px solid var(--line); font: 12px var(--font-code); font-style: normal; }
+.arr { color: var(--dim); font-size: 14px; }
+.obj { padding: 8px 14px; border: 3px solid var(--accent); color: var(--accent); font: 13px var(--font-code); }
+table.trace { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10px; }
+table.trace th, table.trace td { border: 2px solid var(--line); padding: 6px 8px; text-align: left; line-height: 1.8; }
+table.trace th { font-size: 8px; color: var(--dim); }
+
+.ex { border: 3px solid #2a5a7a; background: #08141d; padding: 12px; margin: 14px 0; }
+.exh { display: block; font-size: 8px; color: #7fd0ff; margin-bottom: 6px; }
+.pool, .built { display: grid; gap: 6px; margin: 8px 0; padding: 8px; min-height: 44px; }
+.built { border: 3px dashed var(--line); background: #000; }
+.built.empty::before { content: 'Tap lines to build the program here'; font-size: 8px; color: var(--dim); }
+button.pl { font-family: var(--font-code); font-size: 12px; white-space: pre; padding: 6px 10px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row .go { margin-top: 0; }
+
+/* Python editor */
+.ed {
+  width: 100%; background: #000; color: var(--code); border: 3px solid var(--line); border-radius: 0;
+  font: 13px/1.6 var(--font-code); padding: 10px; resize: vertical; tab-size: 4; white-space: pre; overflow: auto;
+}
+.ed:focus { outline: none; border-color: var(--accent); }
+.ex.py .row { margin: 8px 0; }
+.keys { font-size: 8px; align-self: center; }
+pre.console {
+  margin: 8px 0 0; padding: 10px; background: #02110d; border: 3px solid #0f3b33;
+  color: var(--accent); font: 12px/1.6 var(--font-code); white-space: pre-wrap;
+}
+pre.console.err { background: #1f0a10; border-color: #8a2f43; color: var(--bad); }
+.results { margin-top: 10px; }
+.tr { border: 3px solid var(--line); padding: 8px 10px; margin: 6px 0; font-size: 10px; line-height: 1.9; }
+.tr.pass { border-color: #2a7a6a; }
+.tr.fail { border-color: #8a2f43; }
+.tr b { font-size: 8px; margin-right: 8px; }
+.tr.pass b { color: var(--accent); }
+.tr.fail b { color: var(--bad); }
+.tr code { white-space: pre-wrap; }

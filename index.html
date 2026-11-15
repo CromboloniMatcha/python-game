@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PyAbyss - Dive Into Python</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>PYABYSS</h1>
+      <p class="sub">LEARN PYTHON. DIVE DEEPER. BEGINNER &rarr; EXPERT.</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab on" data-tab="learn">&#9654; LEARN</button>
+      <button class="tab" data-tab="abyss">&#9660; ABYSS</button>
+      <button disabled title="Coming soon">LEADERBOARD (SOON)</button>
+    </nav>
+
+    <section id="learn">
+      <div id="learn-menu" class="box"></div>
+      <div id="learn-play" class="box hide">
+        <div id="learn-head" class="dim"></div>
+        <div id="learn-question"></div>
+      </div>
+    </section>
+
+    <section id="abyss" class="hide">
+      <canvas id="ocean"></canvas>
+      <div class="hud">
+        <span id="hud-depth"></span><span id="hud-oxygen"></span><span id="hud-tier" class="dim"></span>
+      </div>
+      <div id="abyss-start" class="box"></div>
+      <div id="abyss-play" class="box hide"><div id="abyss-question"></div></div>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
